@@ -1,7 +1,10 @@
 package com.pinyougou.sellergoods.service.impl;
 
 import com.alibaba.dubbo.config.annotation.Service;
+import com.github.pagehelper.Page;
+import com.github.pagehelper.PageHelper;
 import com.pinyougou.mapper.TbBrandMapper;
+import com.pinyougou.pojo.PageResult;
 import com.pinyougou.pojo.TbBrand;
 import com.pinyougou.sellergoods.service.IBrandService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,5 +25,16 @@ public class BrandServiceImpl implements IBrandService{
     @Override
     public List<TbBrand> findAll() {
         return mapper.selectByExample(null);
+    }
+
+    @Override
+    public PageResult findPage(int pageNum,int pageSize) {
+        //使用pagehelper 来实现分页查询
+        PageHelper.startPage(pageNum,pageSize);
+//        List<TbBrand> tbBrands = mapper.selectByExample(null);
+//
+//        int total = mapper.countByExample(null);
+        Page<TbBrand> page = (Page<TbBrand>) mapper.selectByExample(null);
+        return new PageResult(page.getTotal(), page.getResult());
     }
 }
