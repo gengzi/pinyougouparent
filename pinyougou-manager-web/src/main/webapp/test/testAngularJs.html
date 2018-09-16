@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+    <meta charset="UTF-8">
+    <title>测试学习AngularJs</title>
+</head>
+<body ng-app="app">
+
+
+ <!--表达式-->
+<div>
+    <p> {{100+100}}</p>
+</div>
+
+ <!--双向绑定-->
+ <div>
+     请输入你的名字：<input type="text"  ng-model="name" >
+     <br>
+     输入的名字是：{{name}}     <p ng-bind="name" ></p>
+ </div>
+
+ <!--控制器-->
+ <div ng-controller="loginController">
+
+        x: <input type="text"  ng-model="x">
+        y: <input type="text" ng-model="y">
+        运算的结果是：<p>{{ add() }}</p>
+         <p ng-bind="add()" ></p>
+ </div>
+
+
+
+ <!--事件指令-->
+ <div ng-controller="loginController">
+
+     x: <input type="text"  ng-model="x">
+     y: <input type="text" ng-model="y">
+
+     <input type="button" ng-click="add1()"  value="运算" >
+
+     运算的结果是：<p>{{ z }}</p>
+     <p ng-bind="z" ></p>
+ </div>
+
+ <div ng-bind="list=[100,200,300]" style="display: none;"></div>
+
+  <div ng-repeat="x in list">
+
+        <td>{{ x }}</td>
+
+
+  </div>
+
+
+
+
+
+
+<script type="application/javascript"  src="../plugins/angularjs/angular.min.js"></script>
+
+ <script type="application/javascript" >
+
+     //获取app
+     var app = angular.module("app",[]);
+
+     app.controller('loginController',function ($scope) {
+
+         $scope.add= function () {
+
+             return parseInt($scope.x)+parseInt($scope.y);
+         }
+
+         $scope.add1 = function () {
+
+             $scope.z = parseInt($scope.x)+parseInt($scope.y);
+         }
+
+     });
+ </script>
+</body>
+</html>
+
