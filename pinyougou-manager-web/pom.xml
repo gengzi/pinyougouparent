@@ -90,6 +90,13 @@
             <artifactId>pinyougou-sellergoods-interface</artifactId>
             <version>1.0-SNAPSHOT</version>
         </dependency>
+
+        <!--配置log4j-->
+        <dependency>
+            <groupId>log4j</groupId>
+            <artifactId>log4j</artifactId>
+        </dependency>
+
     </dependencies>
     <build>
         <plugins>
