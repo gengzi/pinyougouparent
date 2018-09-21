@@ -5,7 +5,9 @@ import com.github.pagehelper.Page;
 import com.github.pagehelper.PageHelper;
 import com.pinyougou.mapper.TbBrandMapper;
 import com.pinyougou.pojo.PageResult;
+import com.pinyougou.pojo.Result;
 import com.pinyougou.pojo.TbBrand;
+import com.pinyougou.pojo.TbBrandExample;
 import com.pinyougou.sellergoods.service.IBrandService;
 import org.springframework.beans.factory.annotation.Autowired;
 
@@ -37,4 +39,39 @@ public class BrandServiceImpl implements IBrandService{
         Page<TbBrand> page = (Page<TbBrand>) mapper.selectByExample(null);
         return new PageResult(page.getTotal(), page.getResult());
     }
+
+    /**
+     * 添加一个品牌信息
+     *
+     * @param brand 品牌信息
+     */
+    @Override
+    public void add(TbBrand brand) {
+        mapper.insert(brand);
+    }
+
+    /**
+     * 查询一个品牌的信息
+     *
+     * @param brandId  品牌的id
+     * @return TbBrand
+     */
+    @Override
+    public TbBrand findOne(long brandId) {
+
+        return mapper.selectByPrimaryKey(brandId);
+    }
+
+
+    /**
+     * 更新一个品牌的信息
+     *
+     * @param brand 品牌信息
+     */
+    @Override
+    public void update(TbBrand brand) {
+        mapper.updateByPrimaryKey(brand);
+    }
+
+
 }

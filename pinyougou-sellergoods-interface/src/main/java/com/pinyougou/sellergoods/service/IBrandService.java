@@ -29,4 +29,29 @@ public interface IBrandService {
      */
     PageResult  findPage(int pageNum,int pageSize);
 
+
+    /**
+     * 添加一个品牌信息
+     * @param brand 品牌信息
+     */
+    void add(TbBrand brand);
+
+
+    /**
+     * 查询一个品牌的信息
+     * @param brandId 品牌id
+     * @return TbBrand
+     */
+    TbBrand findOne(long brandId);
+
+    /**
+     * 更新一个品牌的信息
+     * @param brand
+     */
+    void update(TbBrand brand);
+
+
+
+
+
 }
