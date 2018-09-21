@@ -16,6 +16,9 @@ public class Log4jTest {
     public static final Logger logger = Logger.getLogger(Log4jTest.class);
 
 
+    /**
+     * 测试在dev 分支提交
+     */
     @Test
     public void testLog4jPrint(){
 

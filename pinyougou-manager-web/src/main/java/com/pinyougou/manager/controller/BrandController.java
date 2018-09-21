@@ -22,6 +22,9 @@ import java.util.List;
 public class BrandController {
 
 
+
+
+
     //使用dubbox 的注解
     @Reference
     private IBrandService service;
