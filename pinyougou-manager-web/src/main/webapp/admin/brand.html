@@ -13,7 +13,7 @@
     <link rel="stylesheet" href="../plugins/angularjs/pagination.css">
 
 </head>
-<body class="hold-transition skin-red sidebar-mini" ng-app="pinyougou" ng-controller="brandController" >
+<body class="hold-transition skin-red sidebar-mini" ng-app="pinyougou" ng-controller="brandController">
   <!-- .box-body -->
                     <div class="box-header with-border">
                         <h3 class="box-title">品牌管理</h3>
@@ -138,209 +138,216 @@
     <!--分页组件-->
     <script src="../plugins/angularjs/pagination.js"></script>
 
-	<script type="application/javascript" >
-		var app = angular.module('pinyougou',['pagination']);
-		app.controller('brandController',function ($scope,$http) {
-		    //查询所有
-            $scope.findAll = function () {
-                $http.get("../brand/findAll.do").success(function (response) {
-                    $scope.list = response;
-                });
-            }
-
-            //分页控件配置
-            $scope.paginationConf = {
-                currentPage: 1,
-                totalItems: 10,
-                itemsPerPage: 10,
-                perPageOptions: [10, 20, 30, 40, 50],
-                onChange: function(){
-                    $scope.reloadList();//重新加载
-                }
-            };
-
-            //重新加载列表 数据
-            $scope.reloadList=function(){
-                //切换页码
-//                $scope.findPage( $scope.paginationConf.currentPage, $scope.paginationConf.itemsPerPage);
-                $scope.search( $scope.paginationConf.currentPage, $scope.paginationConf.itemsPerPage);
-
-            }
+	  <!--前台运用mvc设计模式-->
+	  <script src="../js/base_pagination.js"></script>
+	  <script src="../js/service/brandService.js"></script>
+	  <script src="../js/controller/baseController.js"></script>
+	  <script src="../js/controller/brandController.js"></script>
 
 
-//            //查询分页数据
-//            $scope.findPage = function (pageNum,pageSize) {
-//                $http.get("../brand/findPage.do?pageNum="+pageNum+"&pageSize="+pageSize).success(
-//                    function (response) {
-//                            $scope.list = response.rows;
-//                            $scope.paginationConf.totalItems = response.total;
-//                    }
-//                );
-//
-//            }
+	  <!--<script type="application/javascript" >-->
+		<!--var app = angular.module('pinyougou',['pagination']);-->
+		<!--app.controller('brandController',function ($scope,$http) {-->
+		    <!--//查询所有-->
+            <!--$scope.findAll = function () {-->
+                <!--$http.get("../brand/findAll.do").success(function (response) {-->
+                    <!--$scope.list = response;-->
+                <!--});-->
+            <!--}-->
 
-			$scope.serachEntity = {};
+            <!--//分页控件配置-->
+            <!--$scope.paginationConf = {-->
+                <!--currentPage: 1,-->
+                <!--totalItems: 10,-->
+                <!--itemsPerPage: 10,-->
+                <!--perPageOptions: [10, 20, 30, 40, 50],-->
+                <!--onChange: function(){-->
+                    <!--$scope.reloadList();//重新加载-->
+                <!--}-->
+            <!--};-->
 
-            //查询分页数据
-            $scope.search = function (pageNum,pageSize) {
-                $http.post("../brand/findPage.do?pageNum="+pageNum+"&pageSize="+pageSize,$scope.serachEntity).success(
-                    function (response) {
-                        $scope.list = response.rows;
-                        $scope.paginationConf.totalItems = response.total;
-                    }
-                );
+            <!--//重新加载列表 数据-->
+            <!--$scope.reloadList=function(){-->
+                <!--//切换页码-->
+<!--//                $scope.findPage( $scope.paginationConf.currentPage, $scope.paginationConf.itemsPerPage);-->
+                <!--$scope.search( $scope.paginationConf.currentPage, $scope.paginationConf.itemsPerPage);-->
 
-            }
-
-
-            //更新品牌
-			$scope.save = function (){
-                var methodName='add';//方法名称
-                if($scope.entity.id!=null){//如果有ID
-                    methodName='update';//则执行修改方法
-                }
-               $http.post("../brand/"+methodName+".do",$scope.entity).success(
-					function(response){
-                        // 请求成功执行代码
-                        if(response.success == true){
-                            $scope.reloadList();//重新加载
-                        }else{
-                            alert("请求失败，请稍后再试");
-                        }
-					}
-                )}
-//
-// 					.then(
-//                    function successCallback(response) {
-//                        // 请求成功执行代码
-//                        if(response.success == true){
-//                            $scope.reloadList();//重新加载
-//                        }else{
-//                            alert("请求失败，请稍后再试");
-//                        }
-//
-//                    }, function errorCallback(response) {
-//                        // 请求失败执行代码
-//                        alert("服务不可用，请稍后再试");
-//                    });
+            <!--}-->
 
 
-//            // 添加品牌
-//            $scope.add = function () {
-//					$http.post("../brand/"+method+".do",$scope.entity).then(
-//					    function successCallback(response) {
-//                        // 请求成功执行代码
-//							if(response.success == true){
-//                                $scope.reloadList();//重新加载
-//							}else{
-//							    alert("请求失败，请稍后再试");
-//							}
-//
-//                    	}, function errorCallback(response) {
-//                        // 请求失败执行代码
-//							alert("服务不可用，请稍后再试");
-//                    	});
-//            	}
+<!--//            //查询分页数据-->
+<!--//            $scope.findPage = function (pageNum,pageSize) {-->
+<!--//                $http.get("../brand/findPage.do?pageNum="+pageNum+"&pageSize="+pageSize).success(-->
+<!--//                    function (response) {-->
+<!--//                            $scope.list = response.rows;-->
+<!--//                            $scope.paginationConf.totalItems = response.total;-->
+<!--//                    }-->
+<!--//                );-->
+<!--//-->
+<!--//            }-->
 
-            /**
-			 * 查找一条品牌的信息
-             * @param id
-             */
-			$scope.findOne = function (id) {
-                $http.get("../brand/findOne.do?id="+id).success(
-                    function(response){
-                        $scope.entity= response;
-                    }
-                )};
+			<!--$scope.serachEntity = {};-->
+
+            <!--//查询分页数据-->
+            <!--$scope.search = function (pageNum,pageSize) {-->
+                <!--$http.post("../brand/findPage.do?pageNum="+pageNum+"&pageSize="+pageSize,$scope.serachEntity).success(-->
+                    <!--function (response) {-->
+                        <!--$scope.list = response.rows;-->
+                        <!--$scope.paginationConf.totalItems = response.total;-->
+                    <!--}-->
+                <!--);-->
+
+            <!--}-->
 
 
-            /**
-			 * 关闭按钮事件
-             */
-            $scope.shutdown = function () {
-
-				alert($scope.entity.name);
-			}
-
-
-
-			$scope.ids= [];
-
-            /**
-			 * 更新复选框的信息
-             */
-            $scope.updateSelection = function ($event,id) {
-				if($event.target.checked){
-				    $scope.ids.push(id); //添加到数组
-				}else{
-				    var idx = $scope.ids.indexOf(id);
-				    $scope.ids.splice(idx,1); //删除
-				}
-				alert($scope.ids);
-            }
-
-            /**
-			 * 删除复选框选中的品牌信息
-             */
-            $scope.delete = function () {
-//				$http.post("../brand/delete.do",$scope.ids).success(
-//				    function (response) {
-//                        // 请求成功执行代码
-//                        if(response.success == true){
-//                            $scope.reloadList();//重新加载
-//                        }else{
-//                            alert("请求失败，请稍后再试");
-//                        }
-//                    }
-//				);
+            <!--//更新品牌-->
+			<!--$scope.save = function (){-->
+                <!--var methodName='add';//方法名称-->
+                <!--if($scope.entity.id!=null){//如果有ID-->
+                    <!--methodName='update';//则执行修改方法-->
+                <!--}-->
+               <!--$http.post("../brand/"+methodName+".do",$scope.entity).success(-->
+					<!--function(response){-->
+                        <!--// 请求成功执行代码-->
+                        <!--if(response.success == true){-->
+                            <!--$scope.reloadList();//重新加载-->
+                        <!--}else{-->
+                            <!--alert("请求失败，请稍后再试");-->
+                        <!--}-->
+					<!--}-->
+                <!--)}-->
+<!--//-->
+<!--// 					.then(-->
+<!--//                    function successCallback(response) {-->
+<!--//                        // 请求成功执行代码-->
+<!--//                        if(response.success == true){-->
+<!--//                            $scope.reloadList();//重新加载-->
+<!--//                        }else{-->
+<!--//                            alert("请求失败，请稍后再试");-->
+<!--//                        }-->
+<!--//-->
+<!--//                    }, function errorCallback(response) {-->
+<!--//                        // 请求失败执行代码-->
+<!--//                        alert("服务不可用，请稍后再试");-->
+<!--//                    });-->
 
 
-                $http({
-                    method: "POST",
-                    url: "../brand/delete.do",
-                    data: {
-                        ids: $scope.ids
-                    },
-                    headers: { 'Content-Type': 'application/x-www-form-urlencoded' }, //将其变为 form-data 参数形式
-                    transformRequest: function(obj) {
-                        var str = [];
-                        for (var s in obj) {
-                            str.push(encodeURIComponent(s) + "=" + encodeURIComponent(obj[s]));
-                        }
-                        return str.join("&");
-                    }
-                }).success(
-                    function (response) {
-                        // 请求成功执行代码
-                        if(response.success == true){
-                            $scope.reloadList();//重新加载
-                        }else{
-                            alert("请求失败，请稍后再试");
-                        }
-                    }
-				);
+<!--//            // 添加品牌-->
+<!--//            $scope.add = function () {-->
+<!--//					$http.post("../brand/"+method+".do",$scope.entity).then(-->
+<!--//					    function successCallback(response) {-->
+<!--//                        // 请求成功执行代码-->
+<!--//							if(response.success == true){-->
+<!--//                                $scope.reloadList();//重新加载-->
+<!--//							}else{-->
+<!--//							    alert("请求失败，请稍后再试");-->
+<!--//							}-->
+<!--//-->
+<!--//                    	}, function errorCallback(response) {-->
+<!--//                        // 请求失败执行代码-->
+<!--//							alert("服务不可用，请稍后再试");-->
+<!--//                    	});-->
+<!--//            	}-->
+
+            <!--/**-->
+			 <!--* 查找一条品牌的信息-->
+             <!--* @param id-->
+             <!--*/-->
+			<!--$scope.findOne = function (id) {-->
+                <!--$http.get("../brand/findOne.do?id="+id).success(-->
+                    <!--function(response){-->
+                        <!--$scope.entity= response;-->
+                    <!--}-->
+                <!--)};-->
 
 
-//                $http({
-//                    method: "POST",
-//                    url: "../brand/delete-reqpayload.do",
-//                    data: {
-//                        ids: $scope.ids
-//                    }
-//                }).success(
-//                    function (response) {
-//                        // 请求成功执行代码
-//                        if(response.success == true){
-//                            $scope.reloadList();//重新加载
-//                        }else{
-//                            alert("请求失败，请稍后再试");
-//                        }
-//                    }
-//                );
-            }
+            <!--/**-->
+			 <!--* 关闭按钮事件-->
+             <!--*/-->
+            <!--$scope.shutdown = function () {-->
 
-            });
-	</script>
+				<!--alert($scope.entity.name);-->
+			<!--}-->
+
+
+
+			<!--$scope.ids= [];-->
+
+            <!--/**-->
+			 <!--* 更新复选框的信息-->
+             <!--*/-->
+            <!--$scope.updateSelection = function ($event,id) {-->
+				<!--if($event.target.checked){-->
+				    <!--$scope.ids.push(id); //添加到数组-->
+				<!--}else{-->
+				    <!--var idx = $scope.ids.indexOf(id);-->
+				    <!--$scope.ids.splice(idx,1); //删除-->
+				<!--}-->
+				<!--alert($scope.ids);-->
+            <!--}-->
+
+            <!--/**-->
+			 <!--* 删除复选框选中的品牌信息-->
+             <!--*/-->
+            <!--$scope.delete = function () {-->
+<!--//				$http.post("../brand/delete.do",$scope.ids).success(-->
+<!--//				    function (response) {-->
+<!--//                        // 请求成功执行代码-->
+<!--//                        if(response.success == true){-->
+<!--//                            $scope.reloadList();//重新加载-->
+<!--//                        }else{-->
+<!--//                            alert("请求失败，请稍后再试");-->
+<!--//                        }-->
+<!--//                    }-->
+<!--//				);-->
+
+
+                <!--$http({-->
+                    <!--method: "POST",-->
+                    <!--url: "../brand/delete.do",-->
+                    <!--data: {-->
+                        <!--ids: $scope.ids-->
+                    <!--},-->
+                    <!--headers: { 'Content-Type': 'application/x-www-form-urlencoded' }, //将其变为 form-data 参数形式-->
+                    <!--transformRequest: function(obj) {-->
+                        <!--var str = [];-->
+                        <!--for (var s in obj) {-->
+                            <!--str.push(encodeURIComponent(s) + "=" + encodeURIComponent(obj[s]));-->
+                        <!--}-->
+                        <!--return str.join("&");-->
+                    <!--}-->
+                <!--}).success(-->
+                    <!--function (response) {-->
+                        <!--// 请求成功执行代码-->
+                        <!--if(response.success == true){-->
+                            <!--$scope.reloadList();//重新加载-->
+                        <!--}else{-->
+                            <!--alert("请求失败，请稍后再试");-->
+                        <!--}-->
+                    <!--}-->
+				<!--);-->
+
+
+<!--//                $http({-->
+<!--//                    method: "POST",-->
+<!--//                    url: "../brand/delete-reqpayload.do",-->
+<!--//                    data: {-->
+<!--//                        ids: $scope.ids-->
+<!--//                    }-->
+<!--//                }).success(-->
+<!--//                    function (response) {-->
+<!--//                        // 请求成功执行代码-->
+<!--//                        if(response.success == true){-->
+<!--//                            $scope.reloadList();//重新加载-->
+<!--//                        }else{-->
+<!--//                            alert("请求失败，请稍后再试");-->
+<!--//                        }-->
+<!--//                    }-->
+<!--//                );-->
+            <!--}-->
+
+            <!--});-->
+	<!--</script>-->
 
 </body>
 </html>

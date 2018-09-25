@@ -13,10 +13,13 @@ public class Result implements Serializable{
     private String message;
     private boolean success;
 
-    public Result(String message, boolean success) {
+
+    public Result(boolean success, String message) {
         this.message = message;
         this.success = success;
     }
+
+
 
     public String getMessage() {
         return message;

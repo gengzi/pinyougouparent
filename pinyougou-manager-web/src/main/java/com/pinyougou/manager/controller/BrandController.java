@@ -73,10 +73,10 @@ public class BrandController {
     public Result add(@RequestBody TbBrand brand){
         try {
                 service.add(brand);
-           return new Result("品牌信息添加成功",true);
+           return new Result(true,"品牌信息添加成功");
 
         }catch (Exception e){
-           return new Result("品牌信息添加失败",false);
+           return new Result(false,"品牌信息添加失败");
         }
     }
 
@@ -101,10 +101,10 @@ public class BrandController {
     public Result update(@RequestBody TbBrand brand){
         try {
             service.update(brand);
-            return new Result("品牌信息更新成功",true);
+            return new Result(true,"品牌信息更新成功");
 
         }catch (Exception e){
-            return new Result("品牌信息更新失败",false);
+            return new Result(false,"品牌信息更新失败");
         }
     }
 
@@ -117,10 +117,10 @@ public class BrandController {
     public Result delete(@RequestParam Long ids[]){
         try {
             service.deletes(ids);
-            return new Result("品牌信息删除成功",true);
+            return new Result(true,"品牌信息删除成功");
 
         }catch (Exception e){
-            return new Result("品牌信息删除失败",false);
+            return new Result(false,"品牌信息删除失败");
         }
     }
 

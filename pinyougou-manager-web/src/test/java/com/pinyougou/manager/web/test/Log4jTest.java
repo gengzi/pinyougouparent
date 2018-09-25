@@ -5,6 +5,9 @@ import org.junit.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+
 //import org.apache.log4j.Logger;
 
 /**
@@ -62,6 +65,21 @@ public class Log4jTest {
     }
 
 
+    @Test
+    public void test6() {
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd-HH-mm-ss");
+        Calendar beforeTime = Calendar.getInstance();
+        beforeTime.set(1970, 0, 01);
+        //String format = sdf.format(beforeTime.getTime());
+        //   System.out.println("哈哈aaa"+ format);
+        long timeInMillis = beforeTime.getTimeInMillis();
+        System.out.println("当前时间戳" + timeInMillis);
+        long ltime = System.currentTimeMillis();
+        for (Long aa = 50000L; ltime < timeInMillis; aa = ltime - aa) {
+            System.out.println("运行了。。。");
+        }
+
+    }
 
 
 }
