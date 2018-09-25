@@ -29,6 +29,16 @@ public interface IBrandService {
      */
     PageResult  findPage(int pageNum,int pageSize);
 
+    /**
+     * 查询分页数据
+     * @param brand 条件查询
+     * @param pageNum 当前页码
+     * @param pageSize 当前页的大小
+     * @return PageResult
+     */
+    PageResult  findPage(TbBrand brand,int pageNum,int pageSize);
+
+
 
     /**
      * 添加一个品牌信息
@@ -49,6 +59,12 @@ public interface IBrandService {
      * @param brand
      */
     void update(TbBrand brand);
+
+    /**
+     * 删除品牌信息
+     * @param ids 品牌信息id的数组集合
+     */
+    void deletes(Long ids[]);
 
 
 

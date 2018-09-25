@@ -1,6 +1,7 @@
 package com.pinyougou.manager.controller;
 
 import com.alibaba.dubbo.config.annotation.Reference;
+import com.pinyougou.manager.vo.Ids;
 import com.pinyougou.pojo.PageResult;
 import com.pinyougou.pojo.Result;
 import com.pinyougou.pojo.TbBrand;
@@ -10,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
+import sun.java2d.loops.TransformBlit;
 
 import java.util.List;
 
@@ -39,6 +41,17 @@ public class BrandController {
        return service.findAll();
     }
 
+//    /**
+//     *  查询分页的品牌信息
+//     * @param pageNum  当前的页码
+//     * @param pageSize  当前页的大小
+//     * @return PageResult
+//     */
+//    @RequestMapping("/findPage")
+//    public PageResult findPage(@RequestParam int pageNum , @RequestParam int pageSize){
+//        return service.findPage(pageNum,pageSize);
+//    }
+
     /**
      *  查询分页的品牌信息
      * @param pageNum  当前的页码
@@ -46,8 +59,8 @@ public class BrandController {
      * @return PageResult
      */
     @RequestMapping("/findPage")
-    public PageResult findPage(@RequestParam int pageNum , @RequestParam int pageSize){
-        return service.findPage(pageNum,pageSize);
+    public PageResult findPage(@RequestBody TbBrand brand , @RequestParam int pageNum , @RequestParam int pageSize){
+        return service.findPage(brand,pageNum,pageSize);
     }
 
 
@@ -94,6 +107,43 @@ public class BrandController {
             return new Result("品牌信息更新失败",false);
         }
     }
+
+    /**
+     * 删除品牌信息
+     * @param  ids 品牌信息的ids 集合数组value = 23
+     * @return
+     */
+    @RequestMapping("/delete")
+    public Result delete(@RequestParam Long ids[]){
+        try {
+            service.deletes(ids);
+            return new Result("品牌信息删除成功",true);
+
+        }catch (Exception e){
+            return new Result("品牌信息删除失败",false);
+        }
+    }
+
+    /**
+     * 删除品牌信息 接受参数方式采用 request payload
+     * @param  ids 品牌信息的ids 集合数组value = 23
+     * @return
+     */
+    @RequestMapping("/delete-reqpayload")
+    public Result delete_reqplayload(@RequestBody Ids ids){
+        System.out.printf("ids"+ids.toString());
+//        try {
+//            service.deletes(ids);
+//            return new Result("品牌信息删除成功",true);
+//
+//        }catch (Exception e){
+//            return new Result("品牌信息删除失败",false);
+//        }
+        return null;
+    }
+
+
+
 
 
 }

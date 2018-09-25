@@ -10,6 +10,8 @@ import com.pinyougou.pojo.TbBrand;
 import com.pinyougou.pojo.TbBrandExample;
 import com.pinyougou.sellergoods.service.IBrandService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import java.util.List;
 
@@ -38,6 +40,33 @@ public class BrandServiceImpl implements IBrandService{
 //        int total = mapper.countByExample(null);
         Page<TbBrand> page = (Page<TbBrand>) mapper.selectByExample(null);
         return new PageResult(page.getTotal(), page.getResult());
+    }
+
+    /**
+     * 查询分页数据
+     *
+     * @param brand    条件查询
+     * @param pageNum  当前页码
+     * @param pageSize 当前页的大小
+     * @return PageResult  分页数据
+     */
+    @Override
+    public PageResult findPage(TbBrand brand, int pageNum, int pageSize) {
+
+        PageHelper.startPage(pageNum,pageSize);
+        TbBrandExample tbBrandExample = new TbBrandExample();
+        TbBrandExample.Criteria criteria = tbBrandExample.createCriteria();
+        // 判断品牌名称 是否为空
+        if (brand !=null && brand.getName() !=null && brand.getName() != "" && brand.getName().length() > 0){
+            criteria.andNameLike("%"+brand.getName()+"%");
+        }
+        // 判断品牌首字母 是否为空
+        if(brand != null && brand.getFirstChar() != null && brand.getFirstChar() != "" && brand.getFirstChar().length() > 0){
+            criteria.andFirstCharEqualTo(brand.getFirstChar());
+        }
+        Page<TbBrand> page  = (Page<TbBrand>) mapper.selectByExample(tbBrandExample);
+        return new PageResult(page.getTotal(), page.getResult());
+
     }
 
     /**
@@ -71,6 +100,18 @@ public class BrandServiceImpl implements IBrandService{
     @Override
     public void update(TbBrand brand) {
         mapper.updateByPrimaryKey(brand);
+    }
+
+    /**
+     * 删除品牌信息
+     *
+     * @param ids 品牌信息id的数组集合
+     */
+    @Override
+    public void deletes(@RequestParam Long[] ids) {
+        for (long id: ids) {
+            mapper.deleteByPrimaryKey(id);
+        }
     }
 
 
