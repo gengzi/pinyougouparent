@@ -4,6 +4,7 @@ app.service('brandService',function ($http) {
     //查询所有
     this.findAll = function () {
         return $http.get("../brand/findAll.do");
+
     }
 
     //条件查询的分页显示
@@ -12,13 +13,21 @@ app.service('brandService',function ($http) {
     }
 
     //新建或者更新
-    this.save = function (entity) {
+    this.save = function (methodName,entity) {
         return $http.post("../brand/"+methodName+".do",entity);
     }
 
     //查找一个品牌信息
     this.findOne = function (id) {
-        return $http.get("../brand/findOne.do?id="+id);
+        // return $http.get("../brand/findOne.do?id="+id);
+
+        $http({
+            method: "GET",
+            url: "../brand/findOne.do",
+            params: {
+                id: id
+            }
+        });
     }
 
     //删除

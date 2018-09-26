@@ -30,7 +30,7 @@ app.controller("brandController",function ($scope,$controller,brandService) {
         if($scope.entity.id!=null){//如果有ID
             methodName='update';//则执行修改方法
         }
-        brandService.save($scope.entity).success(
+        brandService.save(methodName,$scope.entity).success(
             function(response){
                 // 请求成功执行代码
                 if(response.success == true){
