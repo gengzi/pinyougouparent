@@ -36,12 +36,12 @@
     </servlet-mapping>
 
     <!--&lt;!&ndash; 添加日志监听器 &ndash;&gt;-->
-    <context-param>
-        <param-name>logbackConfigLocation</param-name>
-        <param-value>classpath:logback.xml</param-value>
-    </context-param>
-    <listener>
-        <listener-class>ch.qos.logback.ext.spring.web.LogbackConfigListener</listener-class>
-    </listener>
+    <!--<context-param>-->
+        <!--<param-name>logbackConfigLocation</param-name>-->
+        <!--<param-value>classpath:logback.xml</param-value>-->
+    <!--</context-param>-->
+    <!--<listener>-->
+        <!--<listener-class>ch.qos.logback.ext.spring.web.LogbackConfigListener</listener-class>-->
+    <!--</listener>-->
 
 </web-app>

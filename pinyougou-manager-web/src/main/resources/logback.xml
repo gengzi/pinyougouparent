@@ -53,7 +53,7 @@
       <logger name="jdbc.sqlonly" level="INFO"/>
       <logger name="jdbc.sqltiming" level="DEBUG"/>
       <logger name="org.quartz.simpl" level="error"/>
-
+      <logger name="com.alibaba.dubbo" level="INFO"/>
       <root level="info">
         <appender-ref ref="Console"/>
         <appender-ref ref="FILE"/>
