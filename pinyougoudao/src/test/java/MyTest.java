@@ -1,3 +1,4 @@
+import org.junit.Ignore;
 import org.junit.Test;
 
 import java.text.SimpleDateFormat;
@@ -8,6 +9,7 @@ import java.util.Calendar;
  */
 public class MyTest {
 
+    @Ignore
     @Test
     public void test6() {
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd-HH-mm-ss");

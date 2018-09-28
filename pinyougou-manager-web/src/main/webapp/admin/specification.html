@@ -96,7 +96,7 @@
 			<table class="table table-bordered table-striped"  width="800px">
 		      	<tr>
 		      		<td>规格名称</td>
-		      		<td><input  class="form-control" placeholder="规格名称" >  </td>
+		      		<td><input  class="form-control" placeholder="规格名称"   ng-model="entity.tbSpecification.specName" >  </td>
 		      	</tr>
 			 </table>				
 			 
@@ -119,13 +119,13 @@
                       <tr>
                            
 				            <td>
-				            	<input  class="form-control" placeholder="规格选项"> 
+				            	<input  class="form-control" placeholder="规格选项"  ng-model="pojo.optionName">
 				            </td>
 				            <td>
-				            	<input  class="form-control" placeholder="排序"> 
+				            	<input  class="form-control" placeholder="排序" ng-model="pojo.orders">
 				            </td>
-							<td>
-								<button type="button" class="btn btn-default" title="删除" ><i class="fa fa-trash-o"></i> 删除</button>
+							<td>         <!-- $index 是angluarjs 提供一个 序号-->
+								<button type="button" class="btn btn-default" title="删除"  ng-click="rmSelectRaw($index)" ><i class="fa fa-trash-o"></i> 删除</button>
 							</td>
                       </tr>
 					  <!--<tr>-->
@@ -160,7 +160,7 @@
 
 		</div>
 		<div class="modal-footer">						
-			<button class="btn btn-success" data-dismiss="modal" aria-hidden="true">保存</button>
+			<button class="btn btn-success" data-dismiss="modal" aria-hidden="true"  ng-click="save()" >保存</button>
 			<button class="btn btn-default" data-dismiss="modal" aria-hidden="true">关闭</button>
 		</div>
 	  </div>

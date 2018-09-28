@@ -1,8 +1,11 @@
 package com.pinyougou.manager.controller;
 import java.util.List;
 
+import com.pinyougou.manager.dto.SpecificationDto;
 import com.pinyougou.pojo.PageResult;
 import com.pinyougou.pojo.Result;
+import com.pinyougou.pojo.TbSpecificationOption;
+import com.pinyougou.sellergoods.service.SpecificationOptionService;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -20,6 +23,9 @@ public class SpecificationController {
 
 	@Reference
 	private SpecificationService specificationService;
+
+	@Reference
+	private SpecificationOptionService specificationOptionService;
 	
 	/**
 	 * 返回全部列表
@@ -46,10 +52,14 @@ public class SpecificationController {
 	 * @return
 	 */
 	@RequestMapping("/add")
-	public Result add(@RequestBody TbSpecification specification){
+	public Result add(@RequestBody SpecificationDto specification){
 		try {
-			specificationService.add(specification);
-			return new Result(true, "增加成功");
+            long specificationId = specificationService.add(specification.getTbSpecification());
+            for (TbSpecificationOption option: specification.getSpecificationOptionList()) {
+                option.setSpecId(specificationId);
+                specificationOptionService.add(option);
+            }
+            return new Result(true, "增加成功");
 		} catch (Exception e) {
 			e.printStackTrace();
 			return new Result(false, "增加失败");
@@ -100,7 +110,7 @@ public class SpecificationController {
 	
 		/**
 	 * 查询+分页
-	 * @param brand
+	 * @param specification
 	 * @param page
 	 * @param rows
 	 * @return

@@ -46,8 +46,10 @@ public class SpecificationServiceImpl implements SpecificationService {
 	 * 增加
 	 */
 	@Override
-	public void add(TbSpecification specification) {
-		specificationMapper.insert(specification);		
+	public long add(TbSpecification specification) {
+		specificationMapper.insert(specification);
+		System.out.println(specification.getId());
+		return specification.getId();
 	}
 
 	

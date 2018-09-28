@@ -27,7 +27,7 @@ public interface SpecificationService {
 	/**
 	 * 增加
 	*/
-	public void add(TbSpecification specification);
+	public long add(TbSpecification specification);
 	
 	
 	/**

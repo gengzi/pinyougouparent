@@ -79,9 +79,11 @@ app.controller('specificationController' ,function($scope,$controller   ,specifi
 
 	//添加一行
 	$scope.addTableRaw = function () {
-
 		$scope.entity.specificationOptionList.push({});
+    }
 
+    $scope.rmSelectRaw  = function (index) {
+        $scope.entity.specificationOptionList.splice(index,1);
     }
     
 });	
