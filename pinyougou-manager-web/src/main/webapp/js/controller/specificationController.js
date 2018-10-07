@@ -26,7 +26,7 @@ app.controller('specificationController' ,function($scope,$controller   ,specifi
 	$scope.findOne=function(id){				
 		specificationService.findOne(id).success(
 			function(response){
-				$scope.entity= response;					
+				$scope.entity= response;
 			}
 		);				
 	}

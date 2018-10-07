@@ -2,6 +2,7 @@ package com.pinyougou.sellergoods.service.impl;
 import java.util.List;
 
 import com.pinyougou.pojo.PageResult;
+import com.pinyougou.pojo.TbSpecification;
 import org.springframework.beans.factory.annotation.Autowired;
 import com.alibaba.dubbo.config.annotation.Service;
 import com.github.pagehelper.Page;
@@ -97,5 +98,22 @@ public class SpecificationOptionServiceImpl implements SpecificationOptionServic
 		Page<TbSpecificationOption> page= (Page<TbSpecificationOption>)specificationOptionMapper.selectByExample(example);		
 		return new PageResult(page.getTotal(), page.getResult());
 	}
-	
+
+	/**
+	 * 根据specid 查找规格信息
+	 *
+	 * @param specid
+	 * @return
+	 */
+	@Override
+	public List<TbSpecificationOption> findInfoBySpecId(long specid) {
+
+        TbSpecificationOptionExample tbSpecificationOptionExample = new TbSpecificationOptionExample();
+        tbSpecificationOptionExample.createCriteria().andSpecIdEqualTo(specid);
+        return specificationOptionMapper.selectByExample(tbSpecificationOptionExample);
+
+
+
+	}
+
 }

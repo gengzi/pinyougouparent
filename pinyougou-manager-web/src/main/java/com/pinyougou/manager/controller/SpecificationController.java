@@ -2,6 +2,7 @@ package com.pinyougou.manager.controller;
 import java.util.List;
 
 import com.pinyougou.manager.dto.SpecificationDto;
+import com.pinyougou.manager.vo.SpecificationVo;
 import com.pinyougou.pojo.PageResult;
 import com.pinyougou.pojo.Result;
 import com.pinyougou.pojo.TbSpecificationOption;
@@ -88,8 +89,13 @@ public class SpecificationController {
 	 * @return
 	 */
 	@RequestMapping("/findOne")
-	public TbSpecification findOne(Long id){
-		return specificationService.findOne(id);		
+	public SpecificationVo findOne(Long id){
+        TbSpecification specification = specificationService.findOne(id);
+        List<TbSpecificationOption> infoBySpecId = specificationOptionService.findInfoBySpecId(specification.getId());
+        SpecificationVo specificationVo = new SpecificationVo();
+        specificationVo.setSpecificationOptionList(infoBySpecId);
+        specificationVo.setTbSpecification(specification);
+        return specificationVo;
 	}
 	
 	/**

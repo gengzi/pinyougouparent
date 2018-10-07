@@ -2,6 +2,7 @@ package com.pinyougou.sellergoods.service;
 import java.util.List;
 
 import com.pinyougou.pojo.PageResult;
+import com.pinyougou.pojo.TbSpecification;
 import com.pinyougou.pojo.TbSpecificationOption;
 
 /**
@@ -58,5 +59,11 @@ public interface SpecificationOptionService {
 	 * @return
 	 */
 	public PageResult findPage(TbSpecificationOption specificationOption, int pageNum, int pageSize);
-	
+
+
+	/**
+	 * 根据specid 查找规格信息
+	 * @return
+	 */
+	public List<TbSpecificationOption> findInfoBySpecId(long specid);
 }

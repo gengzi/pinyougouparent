@@ -1,7 +1,9 @@
 package com.pinyougou.sellergoods.service.impl;
 import java.util.List;
 
+import com.pinyougou.mapper.TbSpecificationOptionMapper;
 import com.pinyougou.pojo.PageResult;
+import com.pinyougou.pojo.TbSpecificationOptionExample;
 import org.springframework.beans.factory.annotation.Autowired;
 import com.alibaba.dubbo.config.annotation.Service;
 import com.github.pagehelper.Page;
@@ -23,6 +25,9 @@ public class SpecificationServiceImpl implements SpecificationService {
 
 	@Autowired
 	private TbSpecificationMapper specificationMapper;
+
+	@Autowired
+	private TbSpecificationOptionMapper tbSpecificationOptionMapper;
 	
 	/**
 	 * 查询全部
@@ -77,7 +82,14 @@ public class SpecificationServiceImpl implements SpecificationService {
 	@Override
 	public void delete(Long[] ids) {
 		for(Long id:ids){
-			specificationMapper.deleteByPrimaryKey(id);
+			//先删除规格管理的内容
+            TbSpecificationOptionExample tbSpecificationOptionExample = new TbSpecificationOptionExample();
+            tbSpecificationOptionExample.createCriteria().andSpecIdEqualTo(id);
+            int i = tbSpecificationOptionMapper.deleteByExample(tbSpecificationOptionExample);
+            if (i > 0){
+                specificationMapper.deleteByPrimaryKey(id);
+            }
+
 		}		
 	}
 	

@@ -34,4 +34,19 @@ app.controller("baseController",function ($scope) {
         }
         alert($scope.ids);
     }
+
+    $scope.selectIds= [];
+
+    /**
+     * 更新复选框的信息
+     */
+    $scope.updateSelection2 = function ($event,id) {
+        if($event.target.checked){
+            $scope.selectIds.push(id); //添加到数组
+        }else{
+            var idx = $scope.selectIds.indexOf(id);
+            $scope.selectIds.splice(idx,1); //删除
+        }
+        alert($scope.selectIds);
+    }
 });
