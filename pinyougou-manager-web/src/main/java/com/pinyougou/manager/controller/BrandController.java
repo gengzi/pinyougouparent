@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RestController;
 import sun.java2d.loops.TransformBlit;
 
 import java.util.List;
+import java.util.Map;
 
 
 /**
@@ -144,6 +145,14 @@ public class BrandController {
 
      //测试git 冲突
 
+    /**
+     * 获取下拉框的品牌信息
+     * @return
+     */
+    @RequestMapping("/selectOptionsList")
+    public List<Map> selectOptionsList(){
+        return service.selectOptionsList();
+    }
 
 
 

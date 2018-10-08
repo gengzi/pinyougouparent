@@ -1,5 +1,5 @@
  //控制层 
-app.controller('typeTemplateController' ,function($scope,$controller   ,typeTemplateService){	
+app.controller('typeTemplateController' ,function($scope,$controller   ,typeTemplateService,brandService,specificationService){
 	
 	$controller('baseController',{$scope:$scope});//继承
 	
@@ -76,5 +76,38 @@ app.controller('typeTemplateController' ,function($scope,$controller   ,typeTemp
 			}			
 		);
 	}
-    
+
+	//定义品牌列表的数据
+	$scope.brandlist = {data:[{id:1,text:'联想1'},{id:2,text:'华为1'},{id:3,text:'小米1'}]};
+	//定义规格列表的数据
+    $scope.specificationlist = {data:[{id:1,text:'联想1'},{id:2,text:'华为1'},{id:3,text:'小米1'}]};
+    /**
+	 * 品牌信息的下拉框
+     */
+	$scope.selectOptionsList  = function () {
+		brandService.selectOptionsList().success(function (response) {
+			$scope.brandlist = {data:response};
+
+        });
+        specificationService.selectOptionList().success(function (response) {
+            $scope.specificationlist = {data:response};
+        });
+
+    }
+
+    /**
+	 * 新增行
+	 *
+     */
+    $scope.addTableRow = function(){
+        $scope.entity.customAttributeItems.push({});
+    }
+
+    //删除扩展属性行
+    $scope.deleTableRow=function(index){
+        $scope.entity.customAttributeItems.splice(index,1);//删除
+    }
+
+
+
 });	

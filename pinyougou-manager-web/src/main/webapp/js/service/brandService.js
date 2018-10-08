@@ -29,7 +29,6 @@ app.service('brandService',function ($http) {
             }
         });
     }
-
     //删除
     this.delete =function(ids){
         return $http({
@@ -47,6 +46,14 @@ app.service('brandService',function ($http) {
                 return str.join("&");
             }
         });
+    }
+
+
+    /**
+     *  获取下拉框中的品牌信息
+     */
+    this.selectOptionsList = function () {
+        return $http.get("../brand/selectOptionsList.do");
     }
 
 

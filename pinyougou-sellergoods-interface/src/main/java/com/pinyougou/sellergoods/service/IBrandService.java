@@ -4,6 +4,7 @@ import com.pinyougou.pojo.PageResult;
 import com.pinyougou.pojo.TbBrand;
 
 import java.util.List;
+import java.util.Map;
 
 /**
  * Created by Administrator on 2018/9/13.
@@ -67,6 +68,11 @@ public interface IBrandService {
     void deletes(Long ids[]);
 
 
+    /**
+     * 获取下拉框的品牌信息
+     * @return
+     */
+    List<Map> selectOptionsList();
 
 
 

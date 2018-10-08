@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import java.util.List;
+import java.util.Map;
 
 /**
  * 品牌管理-服务实现类
@@ -112,6 +113,16 @@ public class BrandServiceImpl implements IBrandService{
         for (long id: ids) {
             mapper.deleteByPrimaryKey(id);
         }
+    }
+
+    /**
+     * 获取下拉框的品牌信息
+     *
+     * @return
+     */
+    @Override
+    public List<Map> selectOptionsList() {
+        return mapper.selectOptionList();
     }
 
 
