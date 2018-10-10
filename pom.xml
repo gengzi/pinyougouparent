@@ -378,6 +378,7 @@
         <module>pinyougou-manager-web</module>
         <module>pinyougou-shop-web</module>
         <module>pinyougou-sellergoods-interface</module>
+        <module>spring-security-demo</module>
     </modules>
 
 

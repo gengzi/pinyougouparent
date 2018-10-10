@@ -167,7 +167,7 @@
             <!--<artifactId>logback-ext-spring</artifactId>-->
             <!--<version>0.1.4</version>-->
         <!--</dependency>-->
-
+        <!--logback的依赖-->
         <dependency>
             <groupId>org.slf4j</groupId>
             <artifactId>slf4j-api</artifactId>
@@ -182,6 +182,16 @@
             <groupId>org.slf4j</groupId>
             <artifactId>log4j-over-slf4j</artifactId>
             <version>1.7.7</version>
+        </dependency>
+
+        <!--spring-scurity的依赖-->
+        <dependency>
+            <groupId>org.springframework.security</groupId>
+            <artifactId>spring-security-web</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.security</groupId>
+            <artifactId>spring-security-config</artifactId>
         </dependency>
 
 
