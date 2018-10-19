@@ -1,4 +1,5 @@
 package com.pinyougou.sellergoods.service.impl;
+import java.util.Date;
 import java.util.List;
 
 import com.pinyougou.pojo.PageResult;
@@ -47,7 +48,9 @@ public class SellerServiceImpl implements SellerService {
 	 */
 	@Override
 	public void add(TbSeller seller) {
-		sellerMapper.insert(seller);		
+		seller.setStatus("0");
+		seller.setCreateTime(new Date());
+		sellerMapper.insert(seller);
 	}
 
 	
@@ -160,5 +163,19 @@ public class SellerServiceImpl implements SellerService {
 		Page<TbSeller> page= (Page<TbSeller>)sellerMapper.selectByExample(example);		
 		return new PageResult(page.getTotal(), page.getResult());
 	}
-	
+
+	/**
+	 * 更改商家申请的状态
+	 *
+	 * @param sellerId 商家id
+	 * @param status   状态
+	 */
+	@Override
+	public void updateStatus(String sellerId, String status) {
+		TbSeller seller = sellerMapper.selectByPrimaryKey(sellerId);
+		seller.setStatus(status);
+		sellerMapper.updateByPrimaryKey(seller);
+
+	}
+
 }

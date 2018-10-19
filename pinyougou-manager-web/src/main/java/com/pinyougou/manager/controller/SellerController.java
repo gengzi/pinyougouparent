@@ -110,5 +110,22 @@ public class SellerController {
 	public PageResult search(@RequestBody TbSeller seller, int page, int rows  ){
 		return sellerService.findPage(seller, page, rows);		
 	}
+
+
+	/**
+	 * 审批商家信息
+	 * @param sellerId  商家id
+	 * @param status    状态
+	 * @return
+	 */
+	public Result updateStatus(String sellerId, String status){
+		try {
+			sellerService.updateStatus(sellerId,status);
+			return new Result(true, "成功");
+		} catch (Exception e) {
+			e.printStackTrace();
+			return new Result(false, "失败");
+		}
+	}
 	
 }
