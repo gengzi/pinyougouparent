@@ -68,8 +68,8 @@ public class SellerServiceImpl implements SellerService {
 	 * @return
 	 */
 	@Override
-	public TbSeller findOne(Long id){
-		return sellerMapper.selectByPrimaryKey(id.toString());
+	public TbSeller findOne(String id){
+		return sellerMapper.selectByPrimaryKey(id);
 	}
 
 	/**

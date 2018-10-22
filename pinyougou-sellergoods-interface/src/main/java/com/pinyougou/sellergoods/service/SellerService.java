@@ -41,7 +41,7 @@ public interface SellerService {
 	 * @param id
 	 * @return
 	 */
-	public TbSeller findOne(Long id);
+	public TbSeller findOne(String id);
 	
 	
 	/**
@@ -65,5 +65,7 @@ public interface SellerService {
 	 * @param status  状态
 	 */
 	public void updateStatus(String sellerId,String status);
+
+
 	
 }

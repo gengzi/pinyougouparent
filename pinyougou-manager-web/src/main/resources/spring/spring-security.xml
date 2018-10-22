@@ -14,7 +14,7 @@
 
     <!-- 页面拦截规则 -->
     <http use-expressions="false">
-        <intercept-url pattern="/**" access="ROLE_ADMIN" />
+        <intercept-url pattern="/**" access="ROLE_SELLER" />
         <form-login login-page="/login.html"  default-target-url="/admin/index.html" authentication-failure-url="/login.html" always-use-default-target="true"/>
         <csrf disabled="true"/>
         <headers>
@@ -23,7 +23,7 @@
         <logout/>
     </http>
 
-    <!-- 认证管理器 -->
+     <!--配置方式 认证管理器-->
     <authentication-manager>
         <authentication-provider>
             <user-service>
@@ -32,6 +32,19 @@
             </user-service>
         </authentication-provider>
     </authentication-manager>
+
+    <!--&lt;!&ndash;数据库方式 认证&ndash;&gt;-->
+    <!--<authentication-manager >-->
+        <!--<authentication-provider  user-service-ref="userDetailsService" >-->
+
+        <!--</authentication-provider>-->
+
+
+    <!--</authentication-manager>-->
+
+    <!--<beans:bean id="userDetailsService"  class="com.pinyougou.manager.service.UserDeatilsServiceImpl"  ></beans:bean>-->
+
+
 
 
 
