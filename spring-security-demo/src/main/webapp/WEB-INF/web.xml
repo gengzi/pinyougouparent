@@ -3,6 +3,8 @@
          xmlns="http://java.sun.com/xml/ns/javaee"
          xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd"
          version="2.5">
+
+
     <context-param>
         <param-name>contextConfigLocation</param-name>
         <param-value>classpath:spring-security.xml</param-value>
@@ -13,6 +15,7 @@
         </listener-class>
     </listener>
 
+    <!--spring srcurity的过滤器链，匹配所有的请求-->
     <filter>
         <filter-name>springSecurityFilterChain</filter-name>
         <filter-class>org.springframework.web.filter.DelegatingFilterProxy</filter-class>
