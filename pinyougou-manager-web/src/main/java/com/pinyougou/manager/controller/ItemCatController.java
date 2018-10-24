@@ -3,6 +3,7 @@ import java.util.List;
 
 import com.pinyougou.pojo.PageResult;
 import com.pinyougou.pojo.Result;
+import com.pinyougou.pojo.TbItem;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -108,6 +109,17 @@ public class ItemCatController {
 	@RequestMapping("/search")
 	public PageResult search(@RequestBody TbItemCat itemCat, int page, int rows  ){
 		return itemCatService.findPage(itemCat, page, rows);		
+	}
+
+
+	/**
+	 * 根据父id查询商品分类信息
+	 * @param parentId  父id
+	 * @return
+	 */
+	@RequestMapping("/findByParentId")
+	public List<TbItemCat> getItemCatInfoByParentId(Long parentId){
+		return itemCatService.getItemCatByParentId(parentId);
 	}
 	
 }

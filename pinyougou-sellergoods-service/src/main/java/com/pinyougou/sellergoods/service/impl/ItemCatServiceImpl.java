@@ -97,5 +97,18 @@ public class ItemCatServiceImpl implements ItemCatService {
 		Page<TbItemCat> page= (Page<TbItemCat>)itemCatMapper.selectByExample(example);		
 		return new PageResult(page.getTotal(), page.getResult());
 	}
-	
+
+	/**
+	 * 根据父id 获取商品分类信息
+	 *
+	 * @param parentId
+	 * @return
+	 */
+	@Override
+	public List<TbItemCat> getItemCatByParentId(Long parentId) {
+        TbItemCatExample tbItemCatExample = new TbItemCatExample();
+        tbItemCatExample.createCriteria().andParentIdEqualTo(parentId);
+        return itemCatMapper.selectByExample(tbItemCatExample);
+	}
+
 }

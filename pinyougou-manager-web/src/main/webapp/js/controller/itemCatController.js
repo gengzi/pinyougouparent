@@ -1,5 +1,5 @@
  //控制层 
-app.controller('itemCatController' ,function($scope,$controller   ,itemCatService){	
+app.controller('itemCatController' ,function($scope,$compile,$controller   ,itemCatService){
 	
 	$controller('baseController',{$scope:$scope});//继承
 	
@@ -76,5 +76,53 @@ app.controller('itemCatController' ,function($scope,$controller   ,itemCatServic
 			}			
 		);
 	}
-    
+
+    //查询商品分类信息
+    $scope.findByParentId =function(parentId,parentName){
+        itemCatService.findByParentId(parentId).success(
+            function(response){
+
+                //当parentid 为 0 面包屑导航默认
+				if(response.length > 0){
+                    $scope.list = response;
+				}
+				//当响应数据不是空，响应数据的parentid不是 0 ，就去添加面包屑导航，为了使得动态添加的html起作用，需要使用到 $compile来处理
+				if(response.length > 0 && response[0].parentId != 0){
+
+                    var html = '<li><a href="javascript:void(0);" ng-click="breadcrumbs($event,'+parentId+')"  >'+parentName+'</a></li>';
+                    var $html = $compile(html)($scope);
+					$(".breadcrumb").append($html);
+				}
+				//当继续点击查看下级分类，没有数据了。 就不再展示了
+				if(response.length <= 0){
+					alert("没有了");
+				}
+				console.log(response);
+            }
+        );
+    }
+
+    //面包屑导航
+    $scope.breadcrumbs =function($event,parentId){
+        itemCatService.findByParentId(parentId).success(
+            function(response){
+				//删除当前点击 面包屑导航的后面的 导航栏
+                $($event.target).parent().next().empty().remove();
+
+                //当parentid 为 0 面包屑导航 不用改
+                if(response.length > 0){
+                    $scope.list = response;
+                }
+
+                console.log(response);
+            }
+        );
+    }
+
+
+
+
+
+
+
 });	

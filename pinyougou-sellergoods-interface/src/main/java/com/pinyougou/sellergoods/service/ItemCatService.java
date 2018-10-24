@@ -6,6 +6,7 @@ import com.pinyougou.pojo.TbItemCat;
 
 /**
  * 服务层接口
+ * 商品分类管理
  * @author Administrator
  *
  */
@@ -58,5 +59,16 @@ public interface ItemCatService {
 	 * @return
 	 */
 	public PageResult findPage(TbItemCat itemCat, int pageNum, int pageSize);
+
+
+	/**
+	 * 根据父id 获取商品分类信息
+	 * @param parentId
+	 * @return
+	 */
+	public List<TbItemCat> getItemCatByParentId(Long parentId);
+
+
+
 	
 }
