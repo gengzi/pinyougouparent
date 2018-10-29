@@ -13,6 +13,9 @@
     <link rel="stylesheet" href="../css/style.css">
 	<script src="../plugins/jQuery/jquery-2.2.3.min.js"></script>
     <script src="../plugins/bootstrap/js/bootstrap.min.js"></script>
+	<link rel="stylesheet" href="../plugins/select2/select2.css" />
+	<link rel="stylesheet" href="../plugins/select2/select2-bootstrap.css" />
+
     
 </head>
 
@@ -44,8 +47,8 @@
                             <div class="pull-left">
                                 <div class="form-group form-inline">
                                     <div class="btn-group">
-                                        <button type="button" class="btn btn-default" title="新建" data-toggle="modal" data-target="#editModal" ><i class="fa fa-file-o"></i> 新建</button>
-                                        <button type="button" class="btn btn-default" title="删除" ><i class="fa fa-trash-o"></i> 删除</button>
+                                        <button type="button" class="btn btn-default" title="新建" data-toggle="modal" data-target="#editModal"  ng-click="findTypeInfo()"  ><i class="fa fa-file-o"></i> 新建</button>
+                                        <button type="button" class="btn btn-default" title="删除"  ng-click="dele()"  ><i class="fa fa-trash-o"></i> 删除</button>
                                         <button type="button" class="btn btn-default" title="刷新" ><i class="fa fa-check"></i> 刷新</button>
                                        
                                     </div>
@@ -76,7 +79,7 @@
 
 										  <td class="text-center">
 		                                      <button type="button" class="btn bg-olive btn-xs" ng-click="findByParentId(entity.id,entity.name)"> >查询下级</button>
-		                                 	  <button type="button" class="btn bg-olive btn-xs" data-toggle="modal" data-target="#editModal" >修改</button>                                           
+		                                 	  <button type="button" class="btn bg-olive btn-xs" data-toggle="modal" data-target="#editModal" ng-click="findOne(entity.id)"  >修改</button>
 		                                  </td>
 			                          </tr>
 									  <!--<tr >-->
@@ -131,34 +134,49 @@
 				<tr>
 		      		<td>上级商品分类</td>
 		      		<td>
-		      		   珠宝 >>  银饰
+						{{parentName}}
+						<input  class="form-control" placeholder="商品分类的父ID" ng-model="entity.parentId" type="hidden"   />
 		      		</td>
 		      	</tr>
 		      	<tr>
 		      		<td>商品分类名称</td>
-		      		<td><input  class="form-control" placeholder="商品分类名称">  </td>
+		      		<td><input  class="form-control" placeholder="商品分类名称" ng-model="entity.name"/></td>
 		      	</tr>			  
 		      	<tr>
 		      		<td>类型模板</td>
 		      		<td>	      		
-		      			<input select2 config="options['type_template']" placeholder="商品类型模板" class="form-control" type="text"/>
+		      			<input select2 config="typetemplate" placeholder="商品类型模板" class="form-control" type="text"  select2-model="entity.typeId"/>
+
 		      		</td>		      		      		
 		      	</tr>		      	
 			 </table>				
 			
 		</div>
 		<div class="modal-footer">						
-			<button class="btn btn-success" data-dismiss="modal" aria-hidden="true">保存</button>
+			<button class="btn btn-success" data-dismiss="modal" aria-hidden="true" ng-click="save(entity)" >保存</button>
 			<button class="btn btn-default" data-dismiss="modal" aria-hidden="true">关闭</button>
 		</div>
 	  </div>
 	</div>
 </div>
+
+
   <script type="text/javascript" src="../plugins/angularjs/angular.min.js">  </script>
+  <script type="text/javascript" src="../plugins/select2/select2.min.js">  </script>
+
   <script type="text/javascript" src="../js/base.js">  </script>
   <script type="text/javascript" src="../js/service/itemCatService.js">  </script>
+  <script type="text/javascript" src="../js/service/typeTemplateService.js">  </script>
   <script type="text/javascript" src="../js/controller/baseController.js">  </script>
   <script type="text/javascript" src="../js/controller/itemCatController.js">  </script>
+
+
+
+
+
+  <script type="text/javascript" src="../plugins/select2/angular-select2.js">  </script>
+
+
 
 </body>
 

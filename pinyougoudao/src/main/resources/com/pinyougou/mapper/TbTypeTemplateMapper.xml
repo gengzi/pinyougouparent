@@ -208,4 +208,13 @@
       custom_attribute_items = #{customAttributeItems,jdbcType=VARCHAR}
     where id = #{id,jdbcType=BIGINT}
   </update>
+
+
+
+  <!--自定义 查询分类的下拉框数据-->
+  <select id="selectTypeOptionList"  resultType="java.util.Map" >
+      select id,name from tb_type_template
+  </select>
+
+
 </mapper>

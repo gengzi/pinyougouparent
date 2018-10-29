@@ -2,6 +2,7 @@ package com.pinyougou.sellergoods.service.impl;
 import java.util.List;
 
 import com.pinyougou.pojo.PageResult;
+import com.pinyougou.pojo.vo.ItemCatEditVo;
 import org.springframework.beans.factory.annotation.Autowired;
 import com.alibaba.dubbo.config.annotation.Service;
 import com.github.pagehelper.Page;
@@ -66,7 +67,18 @@ public class ItemCatServiceImpl implements ItemCatService {
 	 */
 	@Override
 	public TbItemCat findOne(Long id){
-		return itemCatMapper.selectByPrimaryKey(id);
+        TbItemCat tbItemCat = itemCatMapper.selectByPrimaryKey(id);
+        TbItemCat tbItemCat_parent = itemCatMapper.selectByPrimaryKey(tbItemCat.getParentId());
+		ItemCatEditVo itemCatEditVo = new ItemCatEditVo();
+        if (tbItemCat_parent != null){
+			itemCatEditVo.setParentName(tbItemCat_parent.getName());
+		}
+
+        itemCatEditVo.setId(tbItemCat.getId());
+        itemCatEditVo.setName(tbItemCat.getName());
+        itemCatEditVo.setTypeId(tbItemCat.getTypeId());
+        itemCatEditVo.setParentId(tbItemCat.getParentId());
+        return itemCatEditVo;
 	}
 
 	/**

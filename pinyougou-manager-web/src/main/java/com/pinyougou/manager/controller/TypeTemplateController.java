@@ -1,5 +1,6 @@
 package com.pinyougou.manager.controller;
 import java.util.List;
+import java.util.Map;
 
 import com.pinyougou.pojo.PageResult;
 import com.pinyougou.pojo.Result;
@@ -109,5 +110,19 @@ public class TypeTemplateController {
 	public PageResult search(@RequestBody TbTypeTemplate typeTemplate, int page, int rows  ){
 		return typeTemplateService.findPage(typeTemplate, page, rows);		
 	}
+
+
+	/**
+	 * 查询下拉框数据
+	 */
+	@RequestMapping("/findOptionList")
+	public List<Map> findTypeOptionList(){
+		return typeTemplateService.findOptionList();
+	}
+
+
+
+
+
 	
 }

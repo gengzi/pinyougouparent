@@ -1,5 +1,5 @@
  //控制层 
-app.controller('itemCatController' ,function($scope,$compile,$controller   ,itemCatService){
+app.controller('itemCatController' ,function($scope,$compile,$controller   ,itemCatService,typeTemplateService){
 	
 	$controller('baseController',{$scope:$scope});//继承
 	
@@ -23,7 +23,7 @@ app.controller('itemCatController' ,function($scope,$compile,$controller   ,item
 	}
 	
 	//查询实体 
-	$scope.findOne=function(id){				
+	$scope.findOne=function(id){
 		itemCatService.findOne(id).success(
 			function(response){
 				$scope.entity= response;					
@@ -77,6 +77,9 @@ app.controller('itemCatController' ,function($scope,$compile,$controller   ,item
 		);
 	}
 
+	$scope.parentName ="顶级目录导航";
+	$scope.parentId ;
+
     //查询商品分类信息
     $scope.findByParentId =function(parentId,parentName){
         itemCatService.findByParentId(parentId).success(
@@ -96,7 +99,20 @@ app.controller('itemCatController' ,function($scope,$compile,$controller   ,item
 				//当继续点击查看下级分类，没有数据了。 就不再展示了
 				if(response.length <= 0){
 					alert("没有了");
-				}
+				}else{
+					//设置当前的父id
+                    $scope.parentId = parentId;
+                    console.log(parentId);
+
+					//拼接 导航栏的字符串
+                    if(parentName == undefined){
+                        parentName = "";
+                    }else{
+                        $scope.parentName += ">>";
+                    }
+                    $scope.parentName +=parentName;
+
+                }
 				console.log(response);
             }
         );
@@ -118,6 +134,20 @@ app.controller('itemCatController' ,function($scope,$compile,$controller   ,item
             }
         );
     }
+
+
+    //查询商品模板分类信息
+    $scope.findTypeInfo =function(){
+        typeTemplateService.findOptionList().success(
+            function(response){
+                $scope.typetemplate = {data:response};
+                console.log(response);
+            }
+		);
+    }
+
+
+
 
 
 

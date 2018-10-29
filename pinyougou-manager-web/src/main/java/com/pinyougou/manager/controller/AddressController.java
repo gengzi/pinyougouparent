@@ -108,7 +108,7 @@ public class AddressController {
 	 */
 	@RequestMapping("/search")
 	public PageResult search(@RequestBody TbAddress address, int page, int rows  ){
-		return addressService.findPage(address, page, rows);		
+		return addressService.findPage(address, page, rows);
 	}
 	
 }
