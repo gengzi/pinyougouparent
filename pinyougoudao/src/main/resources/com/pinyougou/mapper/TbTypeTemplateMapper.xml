@@ -213,7 +213,7 @@
 
   <!--自定义 查询分类的下拉框数据-->
   <select id="selectTypeOptionList"  resultType="java.util.Map" >
-      select id,name from tb_type_template
+      select id,name as text from tb_type_template
   </select>
 
 

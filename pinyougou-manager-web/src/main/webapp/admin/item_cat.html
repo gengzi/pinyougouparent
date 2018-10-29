@@ -11,8 +11,6 @@
     <link rel="stylesheet" href="../plugins/adminLTE/css/AdminLTE.css">
     <link rel="stylesheet" href="../plugins/adminLTE/css/skins/_all-skins.min.css">
     <link rel="stylesheet" href="../css/style.css">
-	<script src="../plugins/jQuery/jquery-2.2.3.min.js"></script>
-    <script src="../plugins/bootstrap/js/bootstrap.min.js"></script>
 	<link rel="stylesheet" href="../plugins/select2/select2.css" />
 	<link rel="stylesheet" href="../plugins/select2/select2-bootstrap.css" />
 
@@ -145,7 +143,7 @@
 		      	<tr>
 		      		<td>类型模板</td>
 		      		<td>	      		
-		      			<input select2 config="typetemplate" placeholder="商品类型模板" class="form-control" type="text"  select2-model="entity.typeId"/>
+		      			<input  select2    select2-model="entity.typeId"  config="typetemplateList" placeholder="商品类型模板" class="form-control" type="text" />
 
 		      		</td>		      		      		
 		      	</tr>		      	
@@ -160,9 +158,15 @@
 	</div>
 </div>
 
+  <script src="../plugins/jQuery/jquery-2.2.3.min.js"></script>
+  <script src="../plugins/bootstrap/js/bootstrap.min.js"></script>
 
-  <script type="text/javascript" src="../plugins/angularjs/angular.min.js">  </script>
-  <script type="text/javascript" src="../plugins/select2/select2.min.js">  </script>
+  <script  type="text/javascript"   src="../plugins/angularjs/angular.min.js">  </script>
+
+
+
+
+  <script type="text/javascript"   src="../plugins/select2/select2.min.js"></script>
 
   <script type="text/javascript" src="../js/base.js">  </script>
   <script type="text/javascript" src="../js/service/itemCatService.js">  </script>
@@ -172,13 +176,13 @@
 
 
 
-
-
-  <script type="text/javascript" src="../plugins/select2/angular-select2.js">  </script>
-
-
+  <script type="text/javascript"   src="../plugins/select2/angular-select2.js">  </script>
 
 </body>
+
+
+
+
 
 
 </html>

@@ -78,7 +78,7 @@ app.controller('itemCatController' ,function($scope,$compile,$controller   ,item
 	}
 
 	$scope.parentName ="顶级目录导航";
-	$scope.parentId ;
+	$scope.parentId =0;
 
     //查询商品分类信息
     $scope.findByParentId =function(parentId,parentName){
@@ -135,12 +135,15 @@ app.controller('itemCatController' ,function($scope,$compile,$controller   ,item
         );
     }
 
-
+//使用 select2  必须先初始化数据
+    $scope.typetemplateList = {data:[{id:1,text:'联想1'},{id:2,text:'华为1'},{id:3,text:'小米1'}]};
     //查询商品模板分类信息
     $scope.findTypeInfo =function(){
         typeTemplateService.findOptionList().success(
             function(response){
-                $scope.typetemplate = {data:response};
+            	var parentid = $scope.parentId;
+                $scope.entity.parentId = parentid;
+                $scope.typetemplateList = {data:response};
                 console.log(response);
             }
 		);
