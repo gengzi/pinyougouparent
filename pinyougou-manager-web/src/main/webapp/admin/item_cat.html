@@ -70,7 +70,7 @@
 			                      </thead>
 			                      <tbody>
 			                          <tr ng-repeat="entity in list" >
-			                              <td><input  type="checkbox" ></td>
+			                              <td><input  type="checkbox"  ng-click="updateSelection2($event,entity.id)" ></td>
 										  <td>{{entity.id}}</td>
 										  <td>{{entity.name}}</td>
 										  <td>{{entity.typeId}}</td>
@@ -138,12 +138,12 @@
 		      	</tr>
 		      	<tr>
 		      		<td>商品分类名称</td>
-		      		<td><input  class="form-control" placeholder="商品分类名称" ng-model="entity.name"/></td>
+					<td><input  class="form-control" placeholder="商品分类名称" ng-model="entity.name"></input></td>
 		      	</tr>			  
 		      	<tr>
 		      		<td>类型模板</td>
 		      		<td>	      		
-		      			<input  select2    select2-model="entity.typeId"  config="typetemplateList" placeholder="商品类型模板" class="form-control" type="text" />
+		      			<input  select2    ng-model="entity.typeId"  config="typetemplateList" placeholder="商品类型模板" class="form-control" type="text" />
 
 		      		</td>		      		      		
 		      	</tr>		      	

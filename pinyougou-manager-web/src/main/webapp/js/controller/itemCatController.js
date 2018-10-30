@@ -2,8 +2,8 @@
 app.controller('itemCatController' ,function($scope,$compile,$controller   ,itemCatService,typeTemplateService){
 	
 	$controller('baseController',{$scope:$scope});//继承
-	
-    //读取列表数据绑定到表单中  
+
+    //读取列表数据绑定到表单中
 	$scope.findAll=function(){
 		itemCatService.findAll().success(
 			function(response){
@@ -24,9 +24,17 @@ app.controller('itemCatController' ,function($scope,$compile,$controller   ,item
 	
 	//查询实体 
 	$scope.findOne=function(id){
+
+        typeTemplateService.findOptionList().success(
+            function(response){
+                $scope.typetemplateList = {data:response};
+                console.log(response);
+            }
+        );
 		itemCatService.findOne(id).success(
 			function(response){
-				$scope.entity= response;					
+				$scope.entity= response;
+
 			}
 		);				
 	}
@@ -43,7 +51,7 @@ app.controller('itemCatController' ,function($scope,$compile,$controller   ,item
 			function(response){
 				if(response.success){
 					//重新查询 
-		        	$scope.reloadList();//重新加载
+		        	//$scope.reloadList();//重新加载
 				}else{
 					alert(response.message);
 				}
@@ -141,21 +149,12 @@ app.controller('itemCatController' ,function($scope,$compile,$controller   ,item
     $scope.findTypeInfo =function(){
         typeTemplateService.findOptionList().success(
             function(response){
-            	var parentid = $scope.parentId;
-                $scope.entity.parentId = parentid;
+            	//先创建一个对象，然后再朝里面赋值
+            	$scope.entity = {};
+                $scope.entity.parentId = $scope.parentId ;
                 $scope.typetemplateList = {data:response};
                 console.log(response);
             }
 		);
     }
-
-
-
-
-
-
-
-
-
-
 });	
