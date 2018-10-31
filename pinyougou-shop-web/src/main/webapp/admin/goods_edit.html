@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html>
-
 <head>
     <!-- 页面meta -->
     <meta charset="utf-8">
@@ -13,30 +12,20 @@
     <link rel="stylesheet" href="../plugins/adminLTE/css/AdminLTE.css">
     <link rel="stylesheet" href="../plugins/adminLTE/css/skins/_all-skins.min.css">
     <link rel="stylesheet" href="../css/style.css">
+	<!--select2 下拉框-->
 	<link rel="stylesheet" href="../plugins/select2/select2.css" />
 	<link rel="stylesheet" href="../plugins/select2/select2-bootstrap.css" />
-
-
     <!-- 富文本编辑器 -->
 	<link rel="stylesheet" href="../plugins/kindeditor/themes/default/default.css" />
-
-    
-    
-      
-    
-    
 </head>
 
-<body class="hold-transition skin-red sidebar-mini" >
-
+<body class="hold-transition skin-red sidebar-mini"  ng-app="pinyougou" ng-controller="goodsDescController" ng-init="findTypeInfo(0)" >
             <!-- 正文区域 -->
             <section class="content">
 
                 <div class="box-body">
-
                     <!--tab页-->
                     <div class="nav-tabs-custom">
-
                         <!--tab头-->
                         <ul class="nav nav-tabs">                       		
                             <li class="active">
@@ -56,31 +45,29 @@
 						
                         <!--tab内容-->
                         <div class="tab-content">
-
                             <!--表单内容-->
                             <div class="tab-pane active" id="home">
                                 <div class="row data-type">                                  
 								   <div class="col-md-2 title">商品分类</div>
-		                          
+									<!--商品分类下拉选项-->
 		                           	  <div class="col-md-10 data">
 		                           	  	<table>
 		                           	  		<tr>
 		                           	  			<td>
-		                           	  				<select class="form-control" >														
-		                           	  				</select>
-		                              			</td>
-		                              			<td>
-		                           	  				<select class="form-control select-sm" ></select>
-		                              			</td>
-		                              			<td>
-		                           	  				<select class="form-control select-sm" ></select>
+		                           	  				<!--<select class="form-control" ></select>-->
+													<input  select2 ng-model="entity.itemCatId"  style="width: 180px"  config="typetemplateList" placeholder="商品类型" class="form-control" type="text"/>
 		                              			</td>
 		                              			<!--<td>-->
-		                           	  				<!--模板ID:19-->
+		                           	  				<!--<select class="form-control select-sm" ></select>-->
 		                              			<!--</td>-->
+		                              			<!--<td>-->
+		                           	  				<!--<select class="form-control select-sm" ></select>-->
+		                              			<!--</td>-->
+		                              			<td>
+		                           	  				所选择的模板ID:{{typetemplateList}}
+		                              			</td>
 		                           	  		</tr>
 		                           	  	</table>
-		                              	
 		                              </div>	                              
 		                          	  
 									
@@ -392,28 +379,25 @@
 	  </div>
 	</div>
 </div>
+			<!--jquery的js-->
+		<script src="../plugins/jQuery/jquery-2.2.3.min.js"></script>
+		<script src="../plugins/bootstrap/js/bootstrap.min.js"></script>
+		<script charset="utf-8" src="../plugins/kindeditor/kindeditor-min.js"></script>
+		<script charset="utf-8" src="../plugins/kindeditor/lang/zh_CN.js"></script>
 
-	<script src="../plugins/jQuery/jquery-2.2.3.min.js"></script>
-	<script src="../plugins/bootstrap/js/bootstrap.min.js"></script>
-	<script charset="utf-8" src="../plugins/kindeditor/kindeditor-min.js"></script>
-	<script charset="utf-8" src="../plugins/kindeditor/lang/zh_CN.js"></script>
 
 
+		<script  type="text/javascript"   src="../plugins/angularjs/angular.min.js">  </script>
+		<script type="text/javascript"   src="../plugins/select2/select2.min.js"></script>
+		<script type="text/javascript" src="../js/base.js">  </script>
 
-	<script  type="text/javascript"   src="../plugins/angularjs/angular.min.js">  </script>
+		<script type="text/javascript" src="../js/service/brandService.js">  </script>
+		<script type="text/javascript" src="../js/service/itemCatService.js">  </script>
+		<script type="text/javascript" src="../js/service/goodsDescService.js">  </script>
 
-	<script type="text/javascript"   src="../plugins/select2/select2.min.js"></script>
-
-	<script type="text/javascript" src="../js/base.js">  </script>
-
-	<script type="text/javascript" src="../js/service/brandService.js">  </script>
-	<script type="text/javascript" src="../js/service/itemCatService.js">  </script>
-	<script type="text/javascript" src="../js/service/goodsDescService.js">  </script>
-
-	<script type="text/javascript" src="../js/controller/baseController.js">  </script>
-	<script type="text/javascript" src="../js/controller/goodsDescController.js">  </script>
-
-	<script type="text/javascript"   src="../plugins/select2/angular-select2.js">  </script>
+		<script type="text/javascript" src="../js/controller/baseController.js">  </script>
+		<script type="text/javascript" src="../js/controller/goodsDescController.js">  </script>
+		<script type="text/javascript"   src="../plugins/select2/angular-select2.js">  </script>
 
 
 

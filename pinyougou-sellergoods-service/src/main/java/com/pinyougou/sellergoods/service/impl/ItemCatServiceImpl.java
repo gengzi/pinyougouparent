@@ -1,5 +1,6 @@
 package com.pinyougou.sellergoods.service.impl;
 import java.util.List;
+import java.util.Map;
 
 import com.pinyougou.pojo.PageResult;
 import com.pinyougou.pojo.vo.ItemCatEditVo;
@@ -121,6 +122,16 @@ public class ItemCatServiceImpl implements ItemCatService {
         TbItemCatExample tbItemCatExample = new TbItemCatExample();
         tbItemCatExample.createCriteria().andParentIdEqualTo(parentId);
         return itemCatMapper.selectByExample(tbItemCatExample);
+	}
+
+	/**
+	 * 根据父id 获取商品分类的下拉框信息
+	 * @param parentId
+	 * @return
+	 */
+	@Override
+	public List<Map> getMapByParentId(Long parentId) {
+		return itemCatMapper.selectByParentId(parentId);
 	}
 
 }

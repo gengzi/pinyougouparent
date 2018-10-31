@@ -193,4 +193,10 @@
       type_id = #{typeId,jdbcType=BIGINT}
     where id = #{id,jdbcType=BIGINT}
   </update>
+
+  <!--根据父id查询商品分类下拉框信息-->
+ <select id="selectByParentId"  resultType="java.util.Map" >
+    select id , name as text ,type_id as typeId from tb_item_cat
+</select>
+
 </mapper>

@@ -1,5 +1,5 @@
  //控制层 
-app.controller('goodsDescController' ,function($scope,$controller   ,goodsDescService){	
+app.controller('goodsDescController' ,function($scope,$controller,goodsDescService,itemCatService){
 	
 	$controller('baseController',{$scope:$scope});//继承
 	
@@ -64,8 +64,22 @@ app.controller('goodsDescController' ,function($scope,$controller   ,goodsDescSe
 			}		
 		);				
 	}
-	
-	$scope.searchEntity={};//定义搜索对象 
+
+
+
+    //声明商品分类下拉框响应的内容
+    $scope.typetemplateList = {data:[]};
+    //查询商品分类的下拉框的内容
+
+    $scope.findTypeInfo =function(pid) {
+        itemCatService.findByParentId(pid).success(
+            function (response) {
+                $scope.typetemplateList = {data:response};
+            }
+        );
+    }
+
+    $scope.searchEntity={};//定义搜索对象
 	
 	//搜索
 	$scope.search=function(page,rows){			
@@ -76,5 +90,6 @@ app.controller('goodsDescController' ,function($scope,$controller   ,goodsDescSe
 			}			
 		);
 	}
-    
+
+
 });	
