@@ -6,6 +6,9 @@ import com.pinyougou.pojo.PageResult;
 import com.pinyougou.pojo.Result;
 import com.pinyougou.pojo.TbBrand;
 import com.pinyougou.sellergoods.service.IBrandService;
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiImplicitParam;
+import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -25,6 +28,7 @@ import java.util.Map;
  */
 @RestController
 @RequestMapping("/brand")
+@Api(value = "BrandController 品牌管理的controller") //用在类上，说明该类的作用
 public class BrandController {
 
 
@@ -38,6 +42,7 @@ public class BrandController {
      * @return List<TbBrand>
      */
     @RequestMapping("/findAll")
+    @ApiOperation(value="查找所有", notes="返回所有")  //注解来给API增加方法说明。
     public List<TbBrand> findAll(){
        return service.findAll();
     }

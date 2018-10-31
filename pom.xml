@@ -34,6 +34,8 @@
         <logback.version>1.2.3</logback.version>
         <slf4j.version>1.7.10</slf4j.version>
         <logback-spring.version>0.1.4</logback-spring.version>
+        <swagger-version>2.5.0</swagger-version>
+
     </properties>
 
     <dependencyManagement>
@@ -344,6 +346,19 @@
             <!--<artifactId>logback-ext-spring</artifactId>-->
                 <!--<version>0.1.4</version>-->
             <!--</dependency>-->
+
+            <!--Swagger的依赖-->
+            <dependency>
+                <groupId>io.springfox</groupId>
+                <artifactId>springfox-swagger2</artifactId>
+                <version>${swagger-version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>io.springfox</groupId>
+                <artifactId>springfox-swagger-ui</artifactId>
+                <version>${swagger-version}</version>
+            </dependency>
 
         </dependencies>
 
