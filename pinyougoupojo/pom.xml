@@ -12,5 +12,13 @@
     <artifactId>pinyougou-pojo</artifactId>
     <packaging>jar</packaging>
 
+    <dependencies>
+        <!--Swagger的依赖-->
+        <dependency>
+            <groupId>io.springfox</groupId>
+            <artifactId>springfox-swagger2</artifactId>
+        </dependency>
+    </dependencies>
+
 
 </project>

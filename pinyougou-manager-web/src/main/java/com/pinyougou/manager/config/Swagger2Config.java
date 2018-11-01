@@ -25,7 +25,7 @@ public class Swagger2Config  {
     @Bean
     public Docket buildDocket() {
         return new Docket(DocumentationType.SWAGGER_2)
-                .groupName("aa")  //进行分组,中文出现错误
+                .groupName("manager-web")  //进行分组,中文出现错误
                 .apiInfo(buildApiInf())
                 .select()
                 .apis(RequestHandlerSelectors.basePackage("com.pinyougou.manager"))//controller路径
